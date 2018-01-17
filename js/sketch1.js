@@ -10,7 +10,7 @@ var svg2 = d3.select("#plot2");
 var x = d3.scalePoint().rangeRound([0, width]).padding(0.1), //use for categorical axis - divides axis into discrete steps of the right width to fill the axis length
     y = d3.scaleLinear().rangeRound([height, 0]); //continuous scaling of y axis.
 
-var color1 = '#d73027', color2 = '#1a9850';
+var color1 = '#AB2567', color2 = '#AB2567';
 
 var g = svg.append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")"); //move the group to the right place
@@ -32,11 +32,13 @@ var lightStep = 8;
 var aStep = 200/numSteps;
 var bStep = 200/numSteps;
 var previous = [];
+var sumChecked = false;
+var weight = .9;
 
 //l = 0-200; a = -100-100; b = -100-100;
 
 var scaleColor = d3.scaleLinear()
-    .domain([1,numSteps]).range(['#d73027', '#1a9850']).interpolate(d3.interpolateLab);
+    .domain([1,numSteps]).range([color1, color1]).interpolate(d3.interpolateLab);
 
 var scaleX = d3.scalePoint().domain([0, 1, 2, 3]).range([0, 300]);
 var scaleY = d3.scaleLinear().domain([0,10]).range([250, 0]);
@@ -56,10 +58,6 @@ var makeLine = d3.line()
     .x(function(d,i) { return scaleX(i); })
     .y(function(d) { return scaleY(d); });
 
-//scaleLinear().domain(new Array(10));
-
-console.log(scaleColor(10));
-
 drawColors();
 
 function drawColors() {
@@ -73,9 +71,6 @@ function drawColors() {
       //hue: i*(360/numSteps), saturation: 1, value: 0.5, row:1, column:i
     //});
   }
-
-
-    console.log(d3.lab(scaleColor(10)));//.darker()
 
   g.selectAll('.colorBars1')
       .data(rectsArray1)//colorArray)
@@ -92,27 +87,35 @@ function drawColors() {
       .attr('height',20)
       .attr('fill',function(d,i){
 
-          var temp = d3.lab(scaleColor(d.column));
-          temp.l = temp.l-lightStep*(d.row-numRows/2);
-          temp.a = temp.a-lightStep*(d.column-aStep);
-          return temp;
-
-          //var temp = d3.lab(scaleColor(d.column));
-          //temp.l = temp.l-lightStep*(d.row-numRows/2);
-          //return temp;
-
-          /*if (d.row < numRows/2){
-              return d3.lab(scaleColor(d.column)).darker((-d.row + numRows/2)/2);
+          if (sumChecked == false){
+              var temp = d3.lab(scaleColor(d.column));
+              temp.l = temp.l-lightStep*(d.row-numRows/2);
+              temp.a = temp.a-aStep*(d.column-aStep);
+              return temp;
           }
-          else if (d.row > numRows/2) {
-            var temp = d3.lab(scaleColor(d.column));
-            temp.l = temp.l-2;
-              return temp;//d3.lab(scaleColor(d.column)).brighter((d.row - numRows/2)/2);
+          else {
+
+              var temp = d3.lab(scaleColor(d.column));
+
+              temp.l = (weight * temp.l) + (1-weight) * d3.lab(color2).l;
+              temp.a = (weight * temp.a) + (1-weight) * d3.lab(color2).a;
+              temp.b = (weight * temp.b) + (1-weight) * d3.lab(color2).b;
+
+              temp.l = temp.l-lightStep*(d.row-numRows/2);
+              temp.a = temp.a-aStep*(d.column-aStep);
+              return temp;
+          }
+
+      })
+      .attr('stroke',function(d,i){
+          if (d.row == 7 && d.column == 9){
+              return 'white'
           }
           else{
-              return d3.lab(scaleColor(d.column))
-          }*/
+              return 'none'
+          }
       })
+      .attr('stroke-width', 2)
       .on('click', function(d){
           //console.log(d3.select(this).attr('fill'));
           paletteArray.push({color: d3.select(this).attr('fill'), points:[Math.random()*10, Math.random()*10,Math.random()*10,Math.random()*10]});
@@ -138,15 +141,35 @@ function drawColors() {
         .attr('height',20)
         .attr('fill',function(d,i){
 
-            var temp = d3.lab(scaleColor(d.column));
-            temp.l = temp.l-lightStep*(d.row-numRows/2);
-            temp.b = temp.b-lightStep*(d.column-bStep);
-            return temp;
+            if (sumChecked == false){
+                var temp = d3.lab(scaleColor(d.column));
+                temp.l = temp.l-lightStep*(d.row-numRows/2);
+                temp.b = temp.b-bStep*(d.column-bStep);
+                return temp;
+            }
+            else {
 
-            //var temp = d3.lab(scaleColor(d.column));
-            //temp.l = temp.l-lightStep*(d.row-numRows/2);
-            //return temp;
+                var temp = d3.lab(scaleColor(d.column));
+
+                temp.l = (weight * temp.l) + (1-weight) * d3.lab(color2).l;
+                temp.a = (weight * temp.a) + (1-weight) * d3.lab(color2).a;
+                temp.b = (weight * temp.b) + (1-weight) * d3.lab(color2).b;
+
+                temp.l = temp.l-lightStep*(d.row-numRows/2);
+                temp.b = temp.b-bStep*(d.column-bStep);
+                return temp;
+            }
+
         })
+        .attr('stroke',function(d,i){
+            if (d.row == 7 && d.column == 9){
+                return 'white'
+            }
+            else{
+                return 'none'
+            }
+        })
+        .attr('stroke-width', 2)
         .on('click', function(d){
             //console.log(d3.select(this).attr('fill'));
 
@@ -290,18 +313,56 @@ function drawChart(){
 
 function updateColor(){
   d3.selectAll('.colorBars1').attr('fill',function(d,i){
-      var temp = d3.lab(scaleColor(d.column));
-      temp.l = temp.l-lightStep*(d.row-numRows/2);
-      temp.a = temp.a-aStep*(d.column-aStep);
-      //temp.b = temp.b-lightStep*(d.column-numSteps/2);
-      return temp;
+
+      if (document.getElementById("useInterpolate").checked){
+          scaleColor.range([color1, color2]);
+      }
+      else{
+          scaleColor.range([color1, color1]);
+      }
+
+
+      if (sumChecked == false){
+          var temp = d3.lab(scaleColor(d.column));
+          temp.l = temp.l-lightStep*(d.row-numRows/2);
+          temp.a = temp.a-aStep*(d.column-aStep);
+          return temp;
+      }
+      else {
+          var temp = d3.lab(scaleColor(d.column));
+
+          temp.l = (weight * temp.l) + (1-weight) * d3.lab(color2).l;
+          temp.a = (weight * temp.a) + (1-weight) * d3.lab(color2).a;
+          temp.b = (weight * temp.b) + (1-weight) * d3.lab(color2).b;
+
+          temp.l = temp.l-lightStep*(d.row-numRows/2);
+          temp.a = temp.a-aStep*(d.column-aStep);
+          return temp;
+      }
+
   });
 
     d3.selectAll('.colorBars2').attr('fill',function(d,i){
-        var temp = d3.lab(scaleColor(d.column));
-        temp.l = temp.l-lightStep*(d.row-numRows/2);
-        temp.b = temp.b-lightStep*(d.column-bStep);
-        return temp;
+
+        if (sumChecked == false){
+            var temp = d3.lab(scaleColor(d.column));
+            temp.l = temp.l-lightStep*(d.row-numRows/2);
+            temp.b = temp.b-bStep*(d.column-bStep);
+            return temp;
+        }
+        else {
+
+            var temp = d3.lab(scaleColor(d.column));
+
+            temp.l = (weight * temp.l) + (1-weight) * d3.lab(color2).l;
+            temp.a = (weight * temp.a) + (1-weight) * d3.lab(color2).a;
+            temp.b = (weight * temp.b) + (1-weight) * d3.lab(color2).b;
+
+            temp.l = temp.l-lightStep*(d.row-numRows/2);
+            temp.b = temp.b-bStep*(d.column-bStep);
+            return temp;
+        }
+
     });
 }
 
@@ -319,30 +380,36 @@ function printColors(){
 
 function updateBeginColor(newColor){
 
-  color1 = '#' + newColor;
-  scaleColor.range([color1, color1]);
-
-  updateColor();
+    color1 = '#' + newColor;
+    updateColor();
 }
 
 function updateEndColor(newColor){
 
     color2 = '#' + newColor;
-    if (document.getElementById("useInterpolate").checked){
-        scaleColor.range([color1, color2]);
-    }
-    else{
-        scaleColor.range([color1, color1]);
-    }
     updateColor();
+
 }
 
 function switchInterpolation(value){
     if (document.getElementById("useInterpolate").checked){
-        scaleColor.range([color1, color2]);
+        document.getElementById("sumColors").checked = false;
+        sumChecked = false;
     }
     else{
-        scaleColor.range([color1, color1]);
+        //nothing; moved if to updateColor()
+    }
+    updateColor();
+}
+
+function sumColors(){
+    if (document.getElementById("sumColors").checked){
+
+        document.getElementById("useInterpolate").checked = false;
+        sumChecked = true;
+    }
+    else{
+        sumChecked = false;
     }
     updateColor();
 }
@@ -368,8 +435,12 @@ function readdPrevious(){
     }
 }
 
+function updateWeight(value){
+    weight = value;
+    updateColor();
+}
+
 function updateLightStep(value){
-  console.log(value);
   lightStep = value;
   updateColor();
 }

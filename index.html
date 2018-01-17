@@ -36,6 +36,15 @@
                 <input type="checkbox" id="useInterpolate" onchange="switchInterpolation()">
                 <label for="useInterpolate">Use interpolation?</label>
 
+                <input type="checkbox" id="sumColors" onchange="sumColors()">
+                <label for="sumColors">Sum colors</label>
+                <div id="weightSliderDiv">
+
+                    <input class="slider" id="weightSlider" type="range" min="0.0" max="1" value=".5" step=".05" oninput="updateWeight(value)" />
+                    <span class="rangespan">% opacity (begin color)</span>
+
+                </div>
+
             </div>
             <div class="col-md-6">
 

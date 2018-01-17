@@ -84,6 +84,14 @@ h5 {
     color:darkgray;
 }
 
+#weightSlider{
+    width: 150px;
+}
+
+#weightSliderDiv{
+    float:right;
+}
+
 .slider {
     width: 150px;
     height: 17px;

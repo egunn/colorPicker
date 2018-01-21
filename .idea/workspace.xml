@@ -23,24 +23,24 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="33" column="36" lean-forward="false" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
+            <state relative-caret-position="119">
+              <caret line="34" column="56" lean-forward="false" selection-start-line="34" selection-start-column="56" selection-end-line="34" selection-end-column="56" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sketch1.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="sketch1.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/sketch1.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="110" column="41" lean-forward="false" selection-start-line="110" selection-start-column="41" selection-end-line="110" selection-end-column="41" />
+            <state relative-caret-position="476">
+              <caret line="325" column="35" lean-forward="false" selection-start-line="325" selection-start-column="35" selection-end-line="325" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sketch.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="sketch.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/sketch.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="211">
@@ -56,14 +56,15 @@
     <findStrings>
       <find>svg3</find>
       <find>palette</find>
+      <find>.on</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/js/sketch1.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/css/sketch.css" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/js/sketch1.js" />
       </list>
     </option>
   </component>
@@ -74,9 +75,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-7" />
-    <option name="width" value="1378" />
-    <option name="height" value="735" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -161,18 +163,18 @@
       <workItem from="1476454372231" duration="1107000" />
       <workItem from="1476468359260" duration="620000" />
       <workItem from="1476631616002" duration="5772000" />
-      <workItem from="1515106461165" duration="36166000" />
+      <workItem from="1515106461165" duration="42313000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44563000" />
+    <option name="totallyTimeSpent" value="50710000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="1378" height="735" extended-state="0" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25074628" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -305,26 +307,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/sketch1.js">
+    <entry file="file://$PROJECT_DIR$/css/sketch.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="110" column="41" lean-forward="false" selection-start-line="110" selection-start-column="41" selection-end-line="110" selection-end-column="41" />
+        <state relative-caret-position="211">
+          <caret line="90" column="14" lean-forward="false" selection-start-line="90" selection-start-column="14" selection-end-line="90" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="33" column="36" lean-forward="false" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
+        <state relative-caret-position="119">
+          <caret line="34" column="56" lean-forward="false" selection-start-line="34" selection-start-column="56" selection-end-line="34" selection-end-column="56" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/sketch.css">
+    <entry file="file://$PROJECT_DIR$/js/sketch1.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="90" column="14" lean-forward="false" selection-start-line="90" selection-start-column="14" selection-end-line="90" selection-end-column="14" />
+        <state relative-caret-position="476">
+          <caret line="325" column="35" lean-forward="false" selection-start-line="325" selection-start-column="35" selection-end-line="325" selection-end-column="35" />
           <folding />
         </state>
       </provider>

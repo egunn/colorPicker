@@ -34,6 +34,7 @@ var bStep = 200/numSteps;
 var previous = [];
 var sumChecked = false;
 var weight = .9;
+var centerColor = null;
 
 //l = 0-200; a = -100-100; b = -100-100;
 
@@ -221,10 +222,18 @@ function drawPalette() {
             return d.color;
         })
         .on('click',function(d,i){
-            previous = paletteArray.splice(i,1);
-            drawPalette();
-            drawChart();
-            printColors();
+            if (d3.event.shiftKey){
+                console.log('shift-clicked');
+                console.log(toHex(d.color).slice(1));
+                document.getElementById("color1").jscolor.fromString(toHex(d.color).slice(1)); //convert from RGB to hex, cut off # sign
+                updateBeginColor(toHex(d.color).slice(1));
+            }
+            else{
+                previous = paletteArray.splice(i,1);
+                drawPalette();
+                drawChart();
+                printColors();
+            }
         });
 
 
@@ -262,11 +271,67 @@ function drawPalette() {
             return d.color;
         })
         .on('click',function(d,i){
-            previous = paletteArray.splice(i,1);
+            centerColor = d3.select(this).attr('fill');
+            drawPalette();
+            /*previous = paletteArray.splice(i,1);
             drawPalette();
             drawChart();
-            printColors();
+            printColors();*/
         });
+
+    g2.selectAll('.paletteBarsTouchCenters')
+        .data(paletteArray)
+        .enter()
+        .append('rect')
+        .attr('class','paletteBarsTouchCenters')
+        .attr('x',function(d,i){
+            if (i<8){
+                return i*50+15;
+            }
+            else if(i>=8 && i<16){
+                return (i-8)*50+15;
+            }
+            else if(i>=16 && i<24){
+                return (i-16)*50+15;
+            }
+
+        })
+        .attr('y',function(d,i){
+            if (i<8){
+                return 225 + 25 +15;
+            }
+            else if(i>=8 && i<16){
+                return 225+ 75+15;
+            }
+            else if(i>=16 && i<24){
+                return 225 + 125+15;
+            }
+        })
+        .attr('width', 20)
+        .attr('height',20)
+        .attr('fill',function(d,i){
+            if (centerColor != null){
+                return centerColor;
+            }
+            else{
+                return d.color;
+            }
+
+        })
+        .on('click',function(d,i){
+            if(centerColor == null){
+                centerColor = d3.select(this).attr('fill');
+            }
+            else {
+                centerColor = null;
+            }
+            drawPalette();
+            /*previous = paletteArray.splice(i,1);
+            drawPalette();
+            drawChart();
+            printColors();*/
+        });
+
 }
 
 
@@ -373,7 +438,14 @@ function printColors(){
 
     for(i=0; i<paletteArray.length; i++){
 
-        colorList.push('<br>' + paletteArray[i].color);
+        //check whether the color is already in rgb (generated from palette), or in hex (from text input)
+        if(paletteArray[i].color.substr(0,1) == "r") {
+            colorList.push('<br>' + toHex(paletteArray[i].color));
+        }
+        else if(paletteArray[i].color.substr(0,1)=="#" || paletteArray[i].color.substr(0,2)==" #" ){
+            colorList.push('<br>' + paletteArray[i].color);
+        }
+
     }
    document.getElementById('paletteColors').innerHTML = 'Color list:' +colorList;
 }
@@ -472,4 +544,15 @@ function textIn(value){
     drawChart();
     printColors();
 
+}
+
+function toHex(colorString){
+    var temp = colorString.split("(")[1].split(")")[0];
+    temp = temp.split(",");
+    var hexColor = temp.map(function(x){                      //For each array element
+        x = parseInt(x).toString(16);      //Convert to a base16 string
+        return (x.length==1) ? "0"+x : x; //Add zero if we get only one character
+    });
+    hexColor = "#"+hexColor.join("");
+    return hexColor;
 }

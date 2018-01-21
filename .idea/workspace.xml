@@ -23,8 +23,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
-              <caret line="109" column="64" lean-forward="false" selection-start-line="109" selection-start-column="64" selection-end-line="109" selection-end-column="64" />
+            <state relative-caret-position="118">
+              <caret line="108" column="101" lean-forward="false" selection-start-line="108" selection-start-column="101" selection-end-line="108" selection-end-column="101" />
               <folding />
             </state>
           </provider>
@@ -33,8 +33,18 @@
       <file leaf-file-name="sketch1.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/sketch1.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="253" column="13" lean-forward="true" selection-start-line="253" selection-start-column="13" selection-end-line="253" selection-end-column="13" />
+            <state relative-caret-position="136">
+              <caret line="726" column="53" lean-forward="false" selection-start-line="726" selection-start-column="53" selection-end-line="726" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="backup.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/backup.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="587" column="18" lean-forward="true" selection-start-line="587" selection-start-column="18" selection-end-line="587" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -52,18 +62,33 @@
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>svg3</find>
       <find>palette</find>
       <find>.on</find>
+      <find>slice</find>
+      <find>splice</find>
+      <find>paletteArray.</find>
+      <find>tempPa</find>
+      <find>tempP</find>
+      <find>draw</find>
+      <find>isTy</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/css/sketch.css" />
+        <option value="$PROJECT_DIR$/js/backup.js" />
+        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/sketch1.js" />
       </list>
     </option>
@@ -145,6 +170,64 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../VizTechFall2017_weekly" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
+    <property name="js.eslint.eslintPackage" value="" />
+    <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+      <method />
+    </configuration>
+    <configuration default="true" type="DartTestRunConfigurationType" factoryName="Dart Test">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="cucumber.js" factoryName="Cucumber.js">
+      <option name="cucumberJsArguments" value="" />
+      <option name="executablePath" />
+      <option name="filePath" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run-script" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory />
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui />
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -163,12 +246,12 @@
       <workItem from="1476454372231" duration="1107000" />
       <workItem from="1476468359260" duration="620000" />
       <workItem from="1476631616002" duration="5772000" />
-      <workItem from="1515106461165" duration="44588000" />
+      <workItem from="1515106461165" duration="52062000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52985000" />
+    <option name="totallyTimeSpent" value="60459000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -315,18 +398,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/backup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="587" column="18" lean-forward="true" selection-start-line="587" selection-start-column="18" selection-end-line="587" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="109" column="64" lean-forward="false" selection-start-line="109" selection-start-column="64" selection-end-line="109" selection-end-column="64" />
+        <state relative-caret-position="118">
+          <caret line="108" column="101" lean-forward="false" selection-start-line="108" selection-start-column="101" selection-end-line="108" selection-end-column="101" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/sketch1.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="253" column="13" lean-forward="true" selection-start-line="253" selection-start-column="13" selection-end-line="253" selection-end-column="13" />
+        <state relative-caret-position="136">
+          <caret line="726" column="53" lean-forward="false" selection-start-line="726" selection-start-column="53" selection-end-line="726" selection-end-column="53" />
           <folding />
         </state>
       </provider>

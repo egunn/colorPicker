@@ -102,11 +102,11 @@
                 Fine-tune your palette by adding a shade of another color to all of your palette entries.
                 <br>
                 <div id="addColorDiv">
-                Color to add: <input class="jscolor" onchange="updateBackgroundColor(this.jscolor)" value="#28354A">
+                Color to add: <input class="jscolor" onchange="updateAddColor(this.jscolor)" value="#AB2567">
                 </div>
                 <div id="weightSliderDiv2">
 
-                    <input class="slider" id="weightSlider2" type="range" min="0.0" max="1" value=".5" step=".05" oninput="updateWeight(value)" />
+                    <input class="slider" id="weightSlider2" type="range" min="0.0" max="1" value=".8" step=".05" oninput="updateAddWeight(value)" />
                     <span class="rangespan">% opacity (original palette color)</span>
 
                 </div>

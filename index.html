@@ -30,6 +30,8 @@
         <div class="row">
 
             <div class="col-md-12">
+                <h3>Palette builder:</h3>
+                <br>
 
                 <div id="checkboxDiv">
                 Begin: <input class="jscolor" id="color1" onchange="updateBeginColor(this.jscolor)" value="ab2567">
@@ -76,7 +78,7 @@
 
         <div class="row">
             <div class="col-md-12">
-
+                <br>
                 Background color: <input class="jscolor" onchange="updateBackgroundColor(this.jscolor)" value="#28354A">
                 <button onclick="resetBackground()">Reset to default</button>
                 <button id="clearAll" onclick="clearPalette()">Clear all swatches</button>
@@ -92,6 +94,27 @@
                 Enter color list (sep'd by semicolon):
                 <br>
                 <input type="text" onchange="textIn(value)">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Palette editor:</h3>
+                Fine-tune your palette by adding a shade of another color to all of your palette entries.
+                <br>
+                <div id="addColorDiv">
+                Color to add: <input class="jscolor" onchange="updateBackgroundColor(this.jscolor)" value="#28354A">
+                </div>
+                <div id="weightSliderDiv2">
+
+                    <input class="slider" id="weightSlider2" type="range" min="0.0" max="1" value=".5" step=".05" oninput="updateWeight(value)" />
+                    <span class="rangespan">% opacity (original palette color)</span>
+
+                </div>
+                <div id="buttonDiv">
+                    <button id="replacePalette" onclick="replacePalette()">Replace original palette</button>
+                </div>
+                <svg class="plot" id="plot3" width="960" height="450"></svg>
+
             </div>
         </div>
 

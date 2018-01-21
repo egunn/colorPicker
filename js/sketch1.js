@@ -5,7 +5,7 @@ var svg = d3.select("#plot1"),
     height = +svg.attr("height") - margin.top - margin.bottom;
 
 var svg2 = d3.select("#plot2");
-//var svg3 = d3.select("#plot3");
+var svg3 = d3.select("#plot3");
 
 var x = d3.scalePoint().rangeRound([0, width]).padding(0.1), //use for categorical axis - divides axis into discrete steps of the right width to fill the axis length
     y = d3.scaleLinear().rangeRound([height, 0]); //continuous scaling of y axis.
@@ -18,6 +18,8 @@ var g2 = svg2.append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")"); //move the group to the right place
 var g3 = svg2.append("g")
     .attr("transform", "translate(" + (margin.left +550) + "," + (margin.top +30) + ")"); //move the group to the right place
+var g4 = svg3.append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top  + ")"); //move the group to the right place
 
 
 var numSteps = 20;
@@ -187,6 +189,12 @@ function drawColors() {
 function drawPalette() {
 
     g2.selectAll('*').remove();
+    g3.selectAll('*').remove();
+
+    //g2.append('text').attr('y',15).text('Click a color to remove. Shift-click to re-center color picker above').attr('fill','gainsboro');
+    //g2.append('text').attr('y',15+225).text('Click on a box to turn on centers').attr('fill','gainsboro');
+
+    g4.append('text').attr('y',15).text('original palette').attr('fill','gainsboro');
 
     g2.selectAll('.paletteBars')
         .data(paletteArray)
@@ -223,8 +231,6 @@ function drawPalette() {
         })
         .on('click',function(d,i){
             if (d3.event.shiftKey){
-                console.log('shift-clicked');
-                console.log(toHex(d.color).slice(1));
                 document.getElementById("color1").jscolor.fromString(toHex(d.color).slice(1)); //convert from RGB to hex, cut off # sign
                 updateBeginColor(toHex(d.color).slice(1));
             }
@@ -236,6 +242,52 @@ function drawPalette() {
             }
         });
 
+
+    g4.selectAll('.paletteBars')
+        .data(paletteArray)
+        .enter()
+        .append('rect')
+        .attr('class','paletteBars')
+        .attr('x',function(d,i){
+            if (i<8){
+                return i*57;
+            }
+            else if(i>=8 && i<16){
+                return (i-8)*57;
+            }
+            else if(i>=16 && i<24){
+                return (i-16)*57;
+            }
+
+        })
+        .attr('y',function(d,i){
+            if (i<8){
+                return 25;
+            }
+            else if(i>=8 && i<16){
+                return 83;
+            }
+            else if(i>=16 && i<24){
+                return 140;
+            }
+        })
+        .attr('width', 50)
+        .attr('height',50)
+        .attr('fill',function(d,i){
+            return d.color;
+        })
+        .on('click',function(d,i){
+            if (d3.event.shiftKey){
+                document.getElementById("color1").jscolor.fromString(toHex(d.color).slice(1)); //convert from RGB to hex, cut off # sign
+                updateBeginColor(toHex(d.color).slice(1));
+            }
+            else{
+                previous = paletteArray.splice(i,1);
+                drawPalette();
+                drawChart();
+                printColors();
+            }
+        });
 
     g2.selectAll('.paletteBarsTouch')
         .data(paletteArray)
@@ -273,6 +325,7 @@ function drawPalette() {
         .on('click',function(d,i){
             centerColor = d3.select(this).attr('fill');
             drawPalette();
+            drawChart();
             /*previous = paletteArray.splice(i,1);
             drawPalette();
             drawChart();
@@ -326,6 +379,7 @@ function drawPalette() {
                 centerColor = null;
             }
             drawPalette();
+            drawChart();
             /*previous = paletteArray.splice(i,1);
             drawPalette();
             drawChart();

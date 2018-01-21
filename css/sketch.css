@@ -93,7 +93,21 @@ h5 {
     float:left;
 }
 
+#addColorDiv  {
+    position:relative;
+    float:left;
+}
+
+#buttonDiv{
+    float:right;
+}
+
 #weightSliderDiv{
+    position:relative;
+    float:left;
+}
+
+#weightSliderDiv2{
     position:relative;
     float:left;
 }

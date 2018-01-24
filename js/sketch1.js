@@ -12,6 +12,7 @@ var x = d3.scalePoint().rangeRound([0, width]).padding(0.1), //use for categoric
 
 var color1 = '#AB2567', color2 = '#AB2567'; addColor = '#AB2567';
 
+
 var g = svg.append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")"); //move the group to the right place
 var g2 = svg2.append("g")
@@ -40,6 +41,41 @@ var sumChecked = false;
 var weight = .5;
 var addWeight = .9;
 var centerColor = null;
+
+var colors = {
+    white:'#FFFFFF',
+    silver:'#C0C0C0',
+    gray:'#808080',
+    black:'#000000',
+    merlotred:'#720030',
+    rosepink:'#d14d84',
+    fuschiapink:'#ff1677',
+    red:'#FF0000',
+    pink:'#f7a8a8',
+    salmon:'#f94848',
+    maroon:'#800000',
+    yellow:'#FFFF00',
+    mustardyellow:'#ce8629',
+    orangeyellow:'#f7910e',
+    olive:'#808000',
+    lime:'#00FF00',
+    yellowgreen:'#8CD34A',
+    mossgreen:'#336d07',
+    green:'#008000',
+    aqua:'#00FFFF',
+    lightteal:'#7beddd',
+    teal:'#008080',
+    slateblue:'#7192c6',
+    periwinkleblue:'#a8c6f7',
+    skyblue:'#4286f4',
+    blue:'#0000FF',
+    navy:'#000080',
+    lavenderpurple:'#b9a0d3',
+    graypurple:'#714e96',
+    pinkpurple:'#9e559e',
+    fuschsiapurple:'#FF00FF',
+    purple:'#800080'
+};
 
 //l = 0-200; a = -100-100; b = -100-100;
 
@@ -129,6 +165,27 @@ function drawColors() {
           drawPalette();
           drawChart();
           printColors();
+      })
+      .on('mouseover',function(d,i){
+          var getColor = nearestColor.from(colors);
+          //d3.select(this).append("svg:title")
+          //    .text(getColor(d3.select(this).attr('fill')).name);
+
+          if(typeof d.color === "object"){
+
+              d3.select(this).append("svg:title")
+                  .text(getColor(toHex(d3.rgb(d3.select(this).attr('fill')).toString())).name);
+          }
+          else if(d3.select(this).attr('fill').substr(0,1) == "r" || d3.select(this).attr('fill').substr(0,2) == " r") {
+              d3.select(this).append("svg:title")
+                  .text(getColor(toHex(d3.select(this).attr('fill'))).name);
+          }
+          else if(d3.select(this).attr('fill').substr(0,1)=="#" || d3.select(this).attr('fill').substr(0,2)==" #" ){
+              d3.select(this).append("svg:title")
+                  .text(getColor(d3.rgb(d3.select(this).attr('fill')).toString()).name);
+          }
+
+
       });
 
 
@@ -184,6 +241,12 @@ function drawColors() {
             drawPalette();
             drawChart();
             printColors();
+        })
+        .on('mouseover',function(d,i){
+            var getColor = nearestColor.from(colors);
+            d3.select(this).append("svg:title")
+                .text(getColor(d3.select(this).attr('fill')).name);
+
         });
 
 }
@@ -256,6 +319,24 @@ function drawPalette() {
                 drawChart();
                 printColors();
             }
+        })
+        .on('mouseover',function(d,i){
+            var getColor = nearestColor.from(colors);
+
+            if(typeof d.color === "object"){
+
+                d3.select(this).append("svg:title")
+                    .text(getColor(d3.rgb(d.color).toString()).name);
+            }
+            else if(d.color.substr(0,1) == "r" || d.color.substr(0,2) == " r") {
+                d3.select(this).append("svg:title")
+                    .text(getColor(toHex(d.color)).name);
+            }
+            else if(d.color.substr(0,1)=="#" || d.color.substr(0,2)==" #" ){
+                d3.select(this).append("svg:title")
+                    .text(getColor(d3.rgb(d.color).toString()).name);
+            }
+
         });
 
 
@@ -304,6 +385,24 @@ function drawPalette() {
                 drawChart();
                 printColors();
             }
+        })
+        .on('mouseover',function(d,i){
+            //var nearestColor = require('nearest-color').from(colors);
+            var getColor = nearestColor.from(colors);
+
+            if(typeof d.color === "object"){
+                d3.select(this).append("svg:title")
+                    .text(getColor(d3.rgb(d.color).toString()).name);
+            }
+            else if (d.color.substr(0,1) == "r" || d.color.substr(0,2) == " r") {
+                d3.select(this).append("svg:title")
+                    .text(getColor(toHex(d.color)).name);
+            }
+            else if(d.color.substr(0,1)=="#" || d.color.substr(0,2)==" #" ){
+                d3.select(this).append("svg:title")
+                    .text(getColor(d3.rgb(d.color).toString()).name);
+            }
+
         });
 
     g2.selectAll('.paletteBarsTouch')
@@ -346,6 +445,23 @@ function drawPalette() {
             drawPalette();
             drawChart();
             printColors();*/
+        })
+        .on('mouseover',function(d,i){
+            var getColor = nearestColor.from(colors);
+
+            if(typeof d.color === "object"){
+                d3.select(this).append("svg:title")
+                    .text(getColor(d3.rgb(d.color).toString()).name);
+            }
+            else if(d.color.substr(0,1) == "r" || d.color.substr(0,2) == " r") {
+                d3.select(this).append("svg:title")
+                    .text(getColor(toHex(d.color)).name);
+            }
+            else if(d.color.substr(0,1)=="#" || d.color.substr(0,2)==" #" ){
+                d3.select(this).append("svg:title")
+                    .text(getColor(d3.rgb(d.color).toString()).name);
+            }
+
         });
 
     g2.selectAll('.paletteBarsTouchCenters')
@@ -400,6 +516,24 @@ function drawPalette() {
             drawPalette();
             drawChart();
             printColors();*/
+        })
+        .on('mouseover',function(d,i){
+            var getColor = nearestColor.from(colors);
+
+            if(typeof d.color === "object"){
+
+                d3.select(this).append("svg:title")
+                    .text(getColor(d3.rgb(d3.select(this).attr('fill')).toString()).name);
+            }
+            else if(d3.select(this).attr('fill').substr(0,1) == "r" || d3.select(this).attr('fill').substr(0,2) == " r") {
+                d3.select(this).append("svg:title")
+                    .text(getColor(toHex(d3.select(this).attr('fill'))).name);
+            }
+            else if(d3.select(this).attr('fill').substr(0,1)=="#" || d3.select(this).attr('fill').substr(0,2)==" #" ){
+                d3.select(this).append("svg:title")
+                    .text(getColor(d3.rgb(d3.select(this).attr('fill')).toString()).name);
+            }
+
         });
 
     if (tempPaletteArray.length != 0){
@@ -413,7 +547,7 @@ function drawTempPalette(){
 
     g4.selectAll('.tempPaletteBars').remove();
 
-    console.log(tempPaletteArray);
+    //console.log(tempPaletteArray);
 
     g4.selectAll('.tempPaletteBars')
         .data(tempPaletteArray)
@@ -459,7 +593,25 @@ function drawTempPalette(){
                 drawChart();
                 printColors();
             }
-        })*/;
+        })*/
+        .on('mouseover',function(d,i){
+            var getColor = nearestColor.from(colors);
+
+            if(typeof d.color === "object"){
+
+                d3.select(this).append("svg:title")
+                    .text(getColor(d3.rgb(d3.select(this).attr('fill')).toString()).name);
+            }
+            else if(d3.select(this).attr('fill').substr(0,1) == "r" || d3.select(this).attr('fill').substr(0,2) == " r") {
+                d3.select(this).append("svg:title")
+                    .text(getColor(toHex(d3.select(this).attr('fill'))).name);
+            }
+            else if(d3.select(this).attr('fill').substr(0,1)=="#" || d3.select(this).attr('fill').substr(0,2)==" #" ){
+                d3.select(this).append("svg:title")
+                    .text(getColor(d3.rgb(d3.select(this).attr('fill')).toString()).name);
+            }
+
+        });
 
 }
 
@@ -500,6 +652,26 @@ function drawChart(){
             drawPalette();
             drawChart();
             printColors();
+        })
+        .on('mouseover',function(d,i){
+            var getColor = nearestColor.from(colors);
+            //d3.select(this).append("svg:title")
+            //    .text(getColor(d3.select(this).attr('stroke')).name);
+
+            if(typeof d.color === "object"){
+
+                d3.select(this).append("svg:title")
+                    .text(getColor(d3.rgb(d3.select(this).attr('stroke')).toString()).name);
+            }
+            else if(d3.select(this).attr('stroke').substr(0,1) == "r" || d3.select(this).attr('stroke').substr(0,2) == " r") {
+                d3.select(this).append("svg:title")
+                    .text(getColor(toHex(d3.select(this).attr('stroke'))).name);
+            }
+            else if(d3.select(this).attr('stroke').substr(0,1)=="#" || d3.select(this).attr('stroke').substr(0,2)==" #" ){
+                d3.select(this).append("svg:title")
+                    .text(getColor(d3.rgb(d3.select(this).attr('stroke')).toString()).name);
+            }
+
         });
 
 }
@@ -564,15 +736,17 @@ function printColors(){
 
     var colorList = [];
 
-    console.log(paletteArray);
+    //console.log(paletteArray, paletteArray[1].color.substr(0,1));
 
     for(i=0; i<paletteArray.length; i++){
+
+        //console.log(paletteArray[i].color);
 
         //check whether the color is already in lab format (as an object), in rgb format(generated from palette), or in hex (from text input)
         if(typeof paletteArray[i].color === "object"){
             colorList.push('<br>' + toHex(d3.rgb(paletteArray[i].color).toString()));
         }
-        else if(paletteArray[i].color.substr(0,1) == "r") {
+        else if(paletteArray[i].color.substr(0,1) == "r" || paletteArray[i].color.substr(0,2) == " r") {
             colorList.push('<br>' + toHex(paletteArray[i].color));
         }
         else if(paletteArray[i].color.substr(0,1)=="#" || paletteArray[i].color.substr(0,2)==" #" ){
@@ -581,7 +755,7 @@ function printColors(){
 
 
     }
-   document.getElementById('paletteColors').innerHTML = 'Color list:' +colorList;
+   document.getElementById('paletteColors').innerHTML = 'Color list:' + colorList.join(';');
 }
 
 function updateBeginColor(newColor){
@@ -684,7 +858,7 @@ function textIn(value){
 function updateAddColor(newColor){
 
     addColor = '#' + newColor;
-    console.log(addColor);
+    //console.log(addColor);
     generateTempPalette();
 }
 
@@ -740,7 +914,7 @@ function replacePalette(){
     paletteArray = copy(tempPaletteArray);
     tempPaletteArray = [];
 
-    console.log(tempPaletteArray);
+    //console.log(tempPaletteArray);
 
     drawPalette();
     drawTempPalette();

@@ -1,6 +1,6 @@
 //adjust the size and position of the SVG to ensure that it has margins around the edge of the screen.
 var svg = d3.select("#plot1"),
-    margin = {top: 20, right: 20, bottom: 30, left: 40},
+    margin = {top: 20, right: 20, bottom: 30, left: 30},
     width = +svg.attr("width") - margin.left - margin.right,
     height = +svg.attr("height") - margin.top - margin.bottom;
 
@@ -23,7 +23,9 @@ var g4 = svg3.append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top  + ")"); //move the group to the right place
 
 
-var numSteps = 20;
+console.log(toHex(d3.rgb('#AB2567').toString()));
+
+var numSteps = 21;
 var numRows = 15;
 var hue, saturation,value;
 var type;
@@ -74,7 +76,113 @@ var colors = {
     graypurple:'#714e96',
     pinkpurple:'#9e559e',
     fuschsiapurple:'#FF00FF',
-    purple:'#800080'
+    purple:'#800080',
+    darkforestgreen:'#002925',
+    royalblue:'#0037f2',
+    pinegreen:'#004d48',
+    darkteal:'#00615b',
+    violet_black:'#170035',
+    deepblue:'#24007d',
+    purple_black:'#26001e',
+    darkbrown:'#261205',
+    darkblue_purple:'#3f0092',
+    darkpurple:'#3f0092',
+    mahoganybrown:'#420b00',
+    deeppurple:'#46005f',
+    mediumteal:'#4ab5ac',
+    mediumbrown:'#563200',
+    lightolivegreen:'#6a7650',
+    darkred_purple:'#6e0046',
+    blue_purple:'#7543e6',
+    darkred:'#76001d',
+    darkfuchsia:'#840059',
+    lightslate:'#88bdcc',
+    Bordeauxdarkpurple_red:'#8b003c',
+    mediumbrown:'#904a3f',
+    darkbrickred:'#910000',
+    mustardbrown:'#916b2d',
+    lightteal:'#91f8ef',
+    red_purple:'#961c7d',
+    darkraspberry:'#a3134e',
+    khakitan:'#a59a78',
+    paleaqua:'#a8ffff',
+    palegreen:'#aad0a0',
+    mediumgray:'#acafab',
+    brickred:'#ad0700',
+    magenta_purple:'#ad3691',
+    mediumgray:'#afa0ae',
+    tealgray:'#b1bcc3',
+    greengray:'#b1d7d9',
+    lightbrown:'#b45922',
+    darkdustyrose:'#c15685',
+    deepred_orange:'#c62b00',
+    mediumpurple:'#cb66df',
+    dustypink:'#cb6966',
+    pastelpurple:'#d597ff',
+    palegreen:'#d5e2b6',
+    raspberry:'#d64764',
+    tan:'#d7926b',
+    rosegray:'#d7afc4',
+    palepinkgray:'#dbccda',
+    lightpurple:'#ddafff',
+    mintgreen:'#ddffff',
+    red_orange:'#e04400',
+    raspberrysorbet:'#eb5f89',
+    salmonorange:'#f65c43',
+    lightpink:'#fddeff',
+    magenta:'#ff00ff',
+    magentapink:'#ff61c6',
+    gray_pink:'#ff697b',
+    tangerineorange:'#ff7100',
+    lighttangerineorange:'#ff8842',
+    orange_pink:'#ff897d',
+    lightrose:'#ff8ba1',
+    lightfuchsiapurple:'#ff8dff',
+    marigoldyellow:'#ff9d00',
+    blushpink:'#ffa092',
+    dustyrosepink:'#ffaddb',
+    orangesherbet:'#ffb56b',
+    lightpink:'#ffbbff',
+    lightpurple_pink:'#ffbdff',
+    lightrosepink:'#ffbeda',
+    lightpeach:'#ffcc95',
+    lightpeach:'#ffcebd',
+    babypink:'#ffcfe3',
+    palepink:'#ffd1ff',
+    lightpink:'#ffd2ff',
+    pinktint:'#ffe3ff',
+    lightpastelyellow:'#fff3cd',
+    eggshellwhite:'#fff9ff',
+    mustardbrown:'#ae8522',
+    olive:'#797c00',
+    caramel:'#c37d26',
+    lightbrown:'#935600',
+    cocoabrown:'#514665',
+    peachpink:'#f07296',
+    purpletint:'#e7dbff',
+    capuccinobrown:'#7c5a55',
+    palebrown:'#8b6e79',
+    mintgreentint:'#d2e5e4',
+    eggshellgray:'#e6dfe4',
+    pastelgreen:'#acd784',
+    lightyellowgreen:'#eaff6f',
+    pastelyellow:'#ffff6d',
+    custardyellow:'#f6e68f',
+    lightyellowbrown:'#decf7a',
+    greengraytint:'#dbe8dd',
+    khakibeige:'#cdd1b4',
+    mediumgreengray:'#7b9198',
+    electricblue:'#0055fc',
+    paleyellow:'#ffef9b',
+    caramelbrown:'#bc7636',
+    lightmustardyellow:'#d7ac00',
+    bluegray:'#bcc6e1',
+    mediumkhakigray:'#5e5d66',
+    mediumbrown:'#775700',
+    latte:'#ad9476',
+    coffee:'#363546',
+    tealblue:'#004c99'
+
 };
 
 //l = 0-200; a = -100-100; b = -100-100;
@@ -131,8 +239,19 @@ function drawColors() {
 
           if (sumChecked == false){
               var temp = d3.lab(scaleColor(d.column));
-              temp.l = temp.l-lightStep*(d.row-numRows/2);
-              temp.a = temp.a-aStep*(d.column-aStep);
+
+              /*if(d.row == 7 && d.column == 10){
+                  console.log(temp, toHex(d3.rgb(temp).toString()));
+             }*/
+
+              temp.l = temp.l-lightStep*(d.row-(numRows-1)/2);
+              temp.a = temp.a-aStep*(d.column-(numSteps-1)/2);
+
+              /*if(d.row == 7 && d.column == 10) {
+                  console.log(d.column-(numSteps-1)/2, aStep*(d.column-(numSteps-1)/2));
+                  console.log(temp, toHex(d3.rgb(temp).toString()));
+              }*/
+
               return temp;
           }
           else {
@@ -143,14 +262,15 @@ function drawColors() {
               temp.a = (weight * temp.a) + (1-weight) * d3.lab(color2).a;
               temp.b = (weight * temp.b) + (1-weight) * d3.lab(color2).b;
 
-              temp.l = temp.l-lightStep*(d.row-numRows/2);
-              temp.a = temp.a-aStep*(d.column-aStep);
+              temp.l = temp.l-lightStep*(d.row-(numRows-1)/2);
+              temp.a = temp.a-aStep*(d.column-(numSteps-1)/2);
+
               return temp;
           }
 
       })
       .attr('stroke',function(d,i){
-          if (d.row == 7 && d.column == 9){
+          if (d.row == 7 && d.column == 10){
               return 'white'
           }
           else{
@@ -172,21 +292,22 @@ function drawColors() {
           //    .text(getColor(d3.select(this).attr('fill')).name);
 
           if(typeof d.color === "object"){
-
-              d3.select(this).append("svg:title")
+              d3.select(this).select('title')
                   .text(getColor(toHex(d3.rgb(d3.select(this).attr('fill')).toString())).name);
           }
           else if(d3.select(this).attr('fill').substr(0,1) == "r" || d3.select(this).attr('fill').substr(0,2) == " r") {
-              d3.select(this).append("svg:title")
-                  .text(getColor(toHex(d3.select(this).attr('fill'))).name);
+              d3.select(this).select('title')
+                  //.text(getColor(toHex(d3.select(this).attr('fill'))).name);
+                  .text(getColor(toHex(d3.rgb(d3.select(this).attr('fill')).toString())).name);
           }
           else if(d3.select(this).attr('fill').substr(0,1)=="#" || d3.select(this).attr('fill').substr(0,2)==" #" ){
-              d3.select(this).append("svg:title")
+              d3.select(this).select('title')
                   .text(getColor(d3.rgb(d3.select(this).attr('fill')).toString()).name);
           }
 
 
-      });
+      })
+      .append("title");
 
 
     g.selectAll('.colorBars2')
@@ -195,7 +316,7 @@ function drawColors() {
         .append('rect')
         .attr('class','colorBars2')
         .attr('x',function(d,i){
-            return d.column*23 + 485;
+            return d.column*23 + 515;
         })
         .attr('y',function(d,i){
             return d.row*27;
@@ -206,8 +327,8 @@ function drawColors() {
 
             if (sumChecked == false){
                 var temp = d3.lab(scaleColor(d.column));
-                temp.l = temp.l-lightStep*(d.row-numRows/2);
-                temp.b = temp.b-bStep*(d.column-bStep);
+                temp.l = temp.l-lightStep*(d.row-(numRows-1)/2);
+                temp.b = temp.b-bStep*(d.column-(numSteps-1)/2);
                 return temp;
             }
             else {
@@ -218,14 +339,14 @@ function drawColors() {
                 temp.a = (weight * temp.a) + (1-weight) * d3.lab(color2).a;
                 temp.b = (weight * temp.b) + (1-weight) * d3.lab(color2).b;
 
-                temp.l = temp.l-lightStep*(d.row-numRows/2);
-                temp.b = temp.b-bStep*(d.column-bStep);
+                temp.l = temp.l-lightStep*(d.row-(numRows-1)/2);
+                temp.b = temp.b-bStep*(d.column-(numSteps-1)/2);
                 return temp;
             }
 
         })
         .attr('stroke',function(d,i){
-            if (d.row == 7 && d.column == 9){
+            if (d.row == 7 && d.column == 10){
                 return 'white'
             }
             else{
@@ -244,10 +365,11 @@ function drawColors() {
         })
         .on('mouseover',function(d,i){
             var getColor = nearestColor.from(colors);
-            d3.select(this).append("svg:title")
+            d3.select(this).select("title")
                 .text(getColor(d3.select(this).attr('fill')).name);
 
-        });
+        })
+        .append("title");
 
 }
 
@@ -325,19 +447,20 @@ function drawPalette() {
 
             if(typeof d.color === "object"){
 
-                d3.select(this).append("svg:title")
+                d3.select(this).select("title")
                     .text(getColor(d3.rgb(d.color).toString()).name);
             }
             else if(d.color.substr(0,1) == "r" || d.color.substr(0,2) == " r") {
-                d3.select(this).append("svg:title")
+                d3.select(this).select("title")
                     .text(getColor(toHex(d.color)).name);
             }
             else if(d.color.substr(0,1)=="#" || d.color.substr(0,2)==" #" ){
-                d3.select(this).append("svg:title")
+                d3.select(this).select("title")
                     .text(getColor(d3.rgb(d.color).toString()).name);
             }
 
-        });
+        })
+        .append("title");
 
 
     g4.selectAll('.paletteBars')
@@ -391,19 +514,20 @@ function drawPalette() {
             var getColor = nearestColor.from(colors);
 
             if(typeof d.color === "object"){
-                d3.select(this).append("svg:title")
+                d3.select(this).select("title")
                     .text(getColor(d3.rgb(d.color).toString()).name);
             }
             else if (d.color.substr(0,1) == "r" || d.color.substr(0,2) == " r") {
-                d3.select(this).append("svg:title")
+                d3.select(this).select("title")
                     .text(getColor(toHex(d.color)).name);
             }
             else if(d.color.substr(0,1)=="#" || d.color.substr(0,2)==" #" ){
-                d3.select(this).append("svg:title")
+                d3.select(this).select("title")
                     .text(getColor(d3.rgb(d.color).toString()).name);
             }
 
-        });
+        })
+        .append("title");
 
     g2.selectAll('.paletteBarsTouch')
         .data(paletteArray)
@@ -450,19 +574,20 @@ function drawPalette() {
             var getColor = nearestColor.from(colors);
 
             if(typeof d.color === "object"){
-                d3.select(this).append("svg:title")
+                d3.select(this).select("title")
                     .text(getColor(d3.rgb(d.color).toString()).name);
             }
             else if(d.color.substr(0,1) == "r" || d.color.substr(0,2) == " r") {
-                d3.select(this).append("svg:title")
+                d3.select(this).select("title")
                     .text(getColor(toHex(d.color)).name);
             }
             else if(d.color.substr(0,1)=="#" || d.color.substr(0,2)==" #" ){
-                d3.select(this).append("svg:title")
+                d3.select(this).select("title")
                     .text(getColor(d3.rgb(d.color).toString()).name);
             }
 
-        });
+        })
+        .append("title");
 
     g2.selectAll('.paletteBarsTouchCenters')
         .data(paletteArray)
@@ -522,19 +647,20 @@ function drawPalette() {
 
             if(typeof d.color === "object"){
 
-                d3.select(this).append("svg:title")
+                d3.select(this).select("title")
                     .text(getColor(d3.rgb(d3.select(this).attr('fill')).toString()).name);
             }
             else if(d3.select(this).attr('fill').substr(0,1) == "r" || d3.select(this).attr('fill').substr(0,2) == " r") {
-                d3.select(this).append("svg:title")
+                d3.select(this).select("title")
                     .text(getColor(toHex(d3.select(this).attr('fill'))).name);
             }
             else if(d3.select(this).attr('fill').substr(0,1)=="#" || d3.select(this).attr('fill').substr(0,2)==" #" ){
-                d3.select(this).append("svg:title")
+                d3.select(this).select("title")
                     .text(getColor(d3.rgb(d3.select(this).attr('fill')).toString()).name);
             }
 
-        });
+        })
+        .append("title");;
 
     if (tempPaletteArray.length != 0){
         generateTempPalette();
@@ -599,19 +725,20 @@ function drawTempPalette(){
 
             if(typeof d.color === "object"){
 
-                d3.select(this).append("svg:title")
+                d3.select(this).select("title")
                     .text(getColor(d3.rgb(d3.select(this).attr('fill')).toString()).name);
             }
             else if(d3.select(this).attr('fill').substr(0,1) == "r" || d3.select(this).attr('fill').substr(0,2) == " r") {
-                d3.select(this).append("svg:title")
+                d3.select(this).select("title")
                     .text(getColor(toHex(d3.select(this).attr('fill'))).name);
             }
             else if(d3.select(this).attr('fill').substr(0,1)=="#" || d3.select(this).attr('fill').substr(0,2)==" #" ){
-                d3.select(this).append("svg:title")
+                d3.select(this).select("title")
                     .text(getColor(d3.rgb(d3.select(this).attr('fill')).toString()).name);
             }
 
-        });
+        })
+        .append("title");
 
 }
 
@@ -660,19 +787,20 @@ function drawChart(){
 
             if(typeof d.color === "object"){
 
-                d3.select(this).append("svg:title")
+                d3.select(this).select("title")
                     .text(getColor(d3.rgb(d3.select(this).attr('stroke')).toString()).name);
             }
             else if(d3.select(this).attr('stroke').substr(0,1) == "r" || d3.select(this).attr('stroke').substr(0,2) == " r") {
-                d3.select(this).append("svg:title")
+                d3.select(this).select("title")
                     .text(getColor(toHex(d3.select(this).attr('stroke'))).name);
             }
             else if(d3.select(this).attr('stroke').substr(0,1)=="#" || d3.select(this).attr('stroke').substr(0,2)==" #" ){
-                d3.select(this).append("svg:title")
+                d3.select(this).select("title")
                     .text(getColor(d3.rgb(d3.select(this).attr('stroke')).toString()).name);
             }
 
-        });
+        })
+        .append("title");
 
 }
 

@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4e0ac03f-9e5c-4c89-95e7-520c3335c1f9" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/sketch.css" afterPath="$PROJECT_DIR$/css/sketch.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/sketch1.js" afterPath="$PROJECT_DIR$/js/sketch1.js" />
     </list>
     <ignored path="colorPicker.iws" />
@@ -26,8 +28,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2142">
-              <caret line="126" column="35" lean-forward="false" selection-start-line="126" selection-start-column="35" selection-end-line="126" selection-end-column="35" />
+            <state relative-caret-position="308">
+              <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -36,9 +38,11 @@
       <file leaf-file-name="sketch1.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/sketch1.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="245" column="0" lean-forward="true" selection-start-line="245" selection-start-column="0" selection-end-line="245" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="160">
+              <caret line="494" column="20" lean-forward="true" selection-start-line="494" selection-start-column="20" selection-end-line="494" selection-end-column="20" />
+              <folding>
+                <element signature="e#1825#5422#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -56,8 +60,8 @@
       <file leaf-file-name="sketch.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/sketch.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1717">
-              <caret line="101" column="16" lean-forward="false" selection-start-line="101" selection-start-column="16" selection-end-line="101" selection-end-column="16" />
+            <state relative-caret-position="293">
+              <caret line="47" column="13" lean-forward="false" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -90,6 +94,8 @@
       <find>svg:title</find>
       <find>&quot;r&quot;</find>
       <find>svg:t</find>
+      <find>scale</find>
+      <find>scaleC</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -98,10 +104,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/css/sketch.css" />
         <option value="$PROJECT_DIR$/js/backup.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/lib/nearestColor.js" />
+        <option value="$PROJECT_DIR$/css/sketch.css" />
+        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/sketch1.js" />
       </list>
     </option>
@@ -280,12 +286,12 @@
       <workItem from="1476468359260" duration="620000" />
       <workItem from="1476631616002" duration="5772000" />
       <workItem from="1515106461165" duration="63679000" />
-      <workItem from="1518651658332" duration="5629000" />
+      <workItem from="1518651658332" duration="15998000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77705000" />
+    <option name="totallyTimeSpent" value="88074000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -324,7 +330,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -340,7 +348,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#1825#5422#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -372,7 +382,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#1825#5422#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -404,7 +416,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#1825#5422#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -428,7 +442,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#1825#5422#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -452,15 +468,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/sketch.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1717">
-          <caret line="101" column="16" lean-forward="false" selection-start-line="101" selection-start-column="16" selection-end-line="101" selection-end-column="16" />
-          <folding />
+          <folding>
+            <element signature="e#1825#5422#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -472,26 +482,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2142">
-          <caret line="126" column="35" lean-forward="false" selection-start-line="126" selection-start-column="35" selection-end-line="126" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/nearestColor.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="39" lean-forward="false" selection-start-line="0" selection-start-column="39" selection-end-line="0" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/sketch.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="47" column="13" lean-forward="false" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/sketch1.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="245" column="0" lean-forward="true" selection-start-line="245" selection-start-column="0" selection-end-line="245" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="160">
+          <caret line="494" column="20" lean-forward="true" selection-start-line="494" selection-start-column="20" selection-end-line="494" selection-end-column="20" />
+          <folding>
+            <element signature="e#1825#5422#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

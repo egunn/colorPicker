@@ -1,6 +1,6 @@
 //adjust the size and position of the SVG to ensure that it has margins around the edge of the screen.
 var svg = d3.select("#plot1"),
-    margin = {top: 20, right: 20, bottom: 30, left: 30},
+    margin = {top: 20, right: 20, bottom: 30, left: 60},
     width = +svg.attr("width") - margin.left - margin.right,
     height = +svg.attr("height") - margin.top - margin.bottom;
 
@@ -14,7 +14,7 @@ var color1 = '#AB2567', color2 = '#AB2567'; addColor = '#AB2567';
 
 
 var g = svg.append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")"); //move the group to the right place
+    .attr("transform", "translate(" + margin.left + "," + (margin.top + 70)+ ")"); //move the group to the right place
 var g2 = svg2.append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")"); //move the group to the right place
 var g3 = svg2.append("g")
@@ -31,6 +31,8 @@ var hue, saturation,value;
 var type;
 var colorArray = [];
 var rectsArray1 = [];
+var gradientArray = [];
+var labArray = [];
 var rectsArray2 = [];
 var paletteArray = [];
 var tempPaletteArray = [];
@@ -40,6 +42,8 @@ var bStep = 200/numSteps;
 var previous = [];
 var previousTemp = [];
 var sumChecked = false;
+var interpolate = false;
+var reverseColorScale = false;
 var weight = .5;
 var addWeight = .9;
 var centerColor = null;
@@ -210,6 +214,7 @@ var makeLine = d3.line()
 
 drawColors();
 
+
 function drawColors() {
   for (var i=0; i < numSteps; i++){
     for (var j=0; j < numRows; j++){
@@ -238,25 +243,38 @@ function drawColors() {
       .attr('fill',function(d,i){
 
           if (sumChecked == false){
-              var temp = d3.lab(scaleColor(d.column));
 
-              /*if(d.row == 7 && d.column == 10){
-                  console.log(temp, toHex(d3.rgb(temp).toString()));
-             }*/
+              var temp;
 
-              temp.l = temp.l-lightStep*(d.row-(numRows-1)/2);
-              temp.a = temp.a-aStep*(d.column-(numSteps-1)/2);
+              if (centerColor == null){
+                  temp = d3.lab(color1);//scaleColor(d.column));
+              }
+             else {
+                  temp = d3.lab(centerColor);//scaleColor(d.column));
+              }
 
-              /*if(d.row == 7 && d.column == 10) {
-                  console.log(d.column-(numSteps-1)/2, aStep*(d.column-(numSteps-1)/2));
-                  console.log(temp, toHex(d3.rgb(temp).toString()));
-              }*/
+
+              if(interpolate == false){
+                  temp.l = temp.l-lightStep*(d.row-(numRows-1)/2);
+                  temp.a = temp.a-aStep*(d.column-(numSteps-1)/2);
+              }
+              else if (interpolate == true){
+                  temp.l = temp.l-lightStep*(d.row-(numRows-1)/2) + (1-weight) * d3.lab(scaleColor(d.column)).l;
+                  temp.a = temp.a-aStep*(d.column-(numSteps-1)/2) + (1-weight) * d3.lab(scaleColor(d.column)).a;
+              }
 
               return temp;
           }
           else {
 
-              var temp = d3.lab(scaleColor(d.column));
+              var temp;
+
+              if (centerColor == null){
+                  temp = d3.lab(color1);//scaleColor(d.column));
+              }
+              else {
+                  temp = d3.lab(centerColor);//scaleColor(d.column));
+              }
 
               temp.l = (weight * temp.l) + (1-weight) * d3.lab(color2).l;
               temp.a = (weight * temp.a) + (1-weight) * d3.lab(color2).a;
@@ -326,14 +344,30 @@ function drawColors() {
         .attr('fill',function(d,i){
 
             if (sumChecked == false){
-                var temp = d3.lab(scaleColor(d.column));
+                var temp;
+
+                if (centerColor == null){
+                    temp = d3.lab(color1);//scaleColor(d.column));
+                }
+                else {
+                    temp = d3.lab(centerColor);//scaleColor(d.column));
+                }
+
+
                 temp.l = temp.l-lightStep*(d.row-(numRows-1)/2);
                 temp.b = temp.b-bStep*(d.column-(numSteps-1)/2);
                 return temp;
             }
             else {
 
-                var temp = d3.lab(scaleColor(d.column));
+                var temp;
+
+                if (centerColor == null){
+                    temp = d3.lab(color1);//scaleColor(d.column));
+                }
+                else {
+                    temp = d3.lab(centerColor);//scaleColor(d.column));
+                }
 
                 temp.l = (weight * temp.l) + (1-weight) * d3.lab(color2).l;
                 temp.a = (weight * temp.a) + (1-weight) * d3.lab(color2).a;
@@ -370,6 +404,112 @@ function drawColors() {
 
         })
         .append("title");
+
+
+    for (var i=0; i<numSteps; i++){
+        gradientArray.push({location:i, color:scaleColor(i)});
+    }
+
+    g.selectAll('.gradientBars')
+        .data(gradientArray)
+        .enter()
+        .append('rect')
+        .attr('class','gradientBars')
+        .attr('x',function(d,i){
+            return d.location*23;
+        })
+        .attr('y', -75)
+        .attr('width', 20)
+        .attr('height',20)
+        .attr('fill',function(d){
+            return d.color;
+        })
+        .on('click', function(d){
+            //console.log(d3.select(this).attr('fill'));
+
+            paletteArray.push({color: d3.select(this).attr('fill'), points:[Math.random()*10, Math.random()*10,Math.random()*10,Math.random()*10]});
+
+            drawPalette();
+            drawChart();
+            printColors();
+        })
+        .on('mouseover',function(d,i){
+            var getColor = nearestColor.from(colors);
+            d3.select(this).select("title")
+                .text(getColor(d3.select(this).attr('fill')).name);
+
+        })
+        .append("title");
+
+
+    for (var i=0; i<numSteps; i++){
+        labArray.push({location:i, l:200-i*(200/numRows), a:-aStep*(i-((numSteps-1)/2)),b:-bStep*((i-(numSteps-1)/2))});
+    }
+
+    g.selectAll('.labABars')
+        .data(labArray)
+        .enter()
+        .append('rect')
+        .attr('class','labABars')
+        .attr('x',function(d,i){
+            return d.location*23;
+        })
+        .attr('y', -35)
+        .attr('width', 20)
+        .attr('height',10)
+        .attr('fill',function(d){
+            return d3.lab(100,d.a,0);
+        });
+
+    g.selectAll('.labBBars')
+        .data(labArray)
+        .enter()
+        .append('rect')
+        .attr('class','labBBars')
+        .attr('x',function(d,i){
+            return d.location*23 + 515;
+        })
+        .attr('y', -35)
+        .attr('width', 20)
+        .attr('height',10)
+        .attr('fill',function(d){
+            return d3.lab(100,0,d.b);
+        });
+
+    g.selectAll('.labLBars')
+        .data(labArray.splice(0,numRows))
+        .enter()
+        .append('rect')
+        .attr('class','labBBars')
+        .attr('x', -35)
+        .attr('y', function(d){
+            return d.location*27;
+        })
+        .attr('width', 10)
+        .attr('height',20)
+        .attr('fill',function(d){
+            return d3.lab(d.l,0,0);
+        })
+
+    g.append('text')
+        .attr('x',-50)
+        .attr('y', 15)
+        .text('L:')
+
+    g.append('text')
+        .attr('x',-15)
+        .attr('y', -26)
+        .text('A:')
+
+    g.append('text')
+        .attr('x',498)
+        .attr('y', -25)
+        .text('B:')
+
+    g.append('text')
+        .attr('x',-15)
+        .attr('y', -60)
+        .text('I:')
 
 }
 
@@ -805,32 +945,66 @@ function drawChart(){
 }
 
 function updateColor(){
+
   d3.selectAll('.colorBars1').attr('fill',function(d,i){
 
       if (document.getElementById("useInterpolate").checked){
-          scaleColor.range([color1, color2]);
+          if (reverseColorScale == false){
+              scaleColor.range([color1, color2]);
+          }
+          else if (reverseColorScale == true){
+              scaleColor.range([color2, color1]);
+          }
+
       }
       else{
           scaleColor.range([color1, color1]);
       }
 
-
       if (sumChecked == false){
-          var temp = d3.lab(scaleColor(d.column));
-          temp.l = temp.l-lightStep*(d.row-numRows/2);
-          temp.a = temp.a-aStep*(d.column-aStep);
+          var temp;
+
+          if (centerColor == null){
+              temp = d3.lab(color1);//scaleColor(d.column));
+          }
+          else {
+              temp = d3.lab(centerColor);//scaleColor(d.column));
+          }
+
+         // temp.l = temp.l-lightStep*(d.row-(numRows-1)/2);
+          //temp.a = temp.a-aStep*(d.column-(numSteps-1)/2);
+
+
+          if(interpolate == false){
+              temp.l = temp.l-lightStep*(d.row-(numRows-1)/2);
+              temp.a = temp.a-aStep*(d.column-(numSteps-1)/2);
+          }
+          else if (interpolate == true){
+              temp.l = weight*(temp.l-lightStep*(d.row-(numRows-1)/2)) + (1-weight) * d3.lab(scaleColor(d.column)).l;
+              temp.a = weight*(temp.a-aStep*(d.column-(numSteps-1)/2)) + (1-weight) * d3.lab(scaleColor(d.column)).a;
+          }
+
+
           return temp;
       }
       else {
-          var temp = d3.lab(scaleColor(d.column));
+          var temp;
+
+          if (centerColor == null){
+              temp = d3.lab(color1);//scaleColor(d.column));
+          }
+          else {
+              temp = d3.lab(centerColor);//scaleColor(d.column));
+          }
 
           temp.l = (weight * temp.l) + (1-weight) * d3.lab(color2).l;
           temp.a = (weight * temp.a) + (1-weight) * d3.lab(color2).a;
           temp.b = (weight * temp.b) + (1-weight) * d3.lab(color2).b;
 
-          temp.l = temp.l-lightStep*(d.row-numRows/2);
-          temp.a = temp.a-aStep*(d.column-aStep);
+          temp.l = temp.l-lightStep*(d.row-(numRows-1)/2);
+          temp.a = temp.a-aStep*(d.column-(numSteps-1)/2);
           return temp;
+
       }
 
   });
@@ -838,25 +1012,73 @@ function updateColor(){
     d3.selectAll('.colorBars2').attr('fill',function(d,i){
 
         if (sumChecked == false){
-            var temp = d3.lab(scaleColor(d.column));
-            temp.l = temp.l-lightStep*(d.row-numRows/2);
-            temp.b = temp.b-bStep*(d.column-bStep);
+            var temp;
+
+            if (centerColor == null){
+                temp = d3.lab(color1);//scaleColor(d.column));
+            }
+            else {
+                temp = d3.lab(centerColor);//scaleColor(d.column));
+            }
+
+            //temp.l = temp.l-lightStep*(d.row-(numRows-1)/2);
+            //temp.b = temp.b-bStep*(d.column-(numSteps-1)/2);
+
+            if(interpolate == false){
+                temp.l = temp.l-lightStep*(d.row-(numRows-1)/2);
+                temp.b = temp.b-bStep*(d.column-(numSteps-1)/2);
+            }
+            else if (interpolate == true){
+                temp.l = weight*(temp.l-lightStep*(d.row-(numRows-1)/2)) + (1-weight) * d3.lab(scaleColor(d.column)).l;
+                temp.b = weight*(temp.b-bStep*(d.column-(numSteps-1)/2)) + (1-weight) * d3.lab(scaleColor(d.column)).b;
+            }
+
+
             return temp;
         }
         else {
 
-            var temp = d3.lab(scaleColor(d.column));
+            var temp;
+
+            if (centerColor == null){
+                temp = d3.lab(color1);//scaleColor(d.column));
+            }
+            else {
+                temp = d3.lab(centerColor);//scaleColor(d.column));
+            }
 
             temp.l = (weight * temp.l) + (1-weight) * d3.lab(color2).l;
             temp.a = (weight * temp.a) + (1-weight) * d3.lab(color2).a;
             temp.b = (weight * temp.b) + (1-weight) * d3.lab(color2).b;
 
-            temp.l = temp.l-lightStep*(d.row-numRows/2);
-            temp.b = temp.b-bStep*(d.column-bStep);
+            //temp.l = temp.l-lightStep*(d.row-(numRows-1)/2);
+            //temp.b = temp.b-bStep*(d.column-(numSteps-1)/2);
+
+            if(interpolate == false){
+                temp.l = temp.l-lightStep*(d.row-(numRows-1)/2);
+                temp.b = temp.b-bStep*(d.column-(numSteps-1)/2);
+            }
+            else if (interpolate == true){
+                temp.l = weight*(temp.l-lightStep*(d.row-(numRows-1)/2)) + (1-weight) * d3.lab(scaleColor(d.column)).l;
+                temp.b = weight*(temp.b-bStep*(d.column-(numSteps-1)/2)) + (1-weight) * d3.lab(scaleColor(d.column)).b;
+            }
+
+
             return temp;
         }
 
     });
+
+    gradientArray.forEach(function(d){
+        d.color = scaleColor(d.location);
+    });
+
+    g.selectAll('.gradientBars')
+        .data(gradientArray)
+        .attr('fill',function(d){
+            return d.color;
+    })
+
 }
 
 
@@ -903,10 +1125,22 @@ function switchInterpolation(value){
     if (document.getElementById("useInterpolate").checked){
         document.getElementById("sumColors").checked = false;
         sumChecked = false;
+        interpolate = true;
     }
     else{
-        //nothing; moved if to updateColor()
+        interpolate = false;
     }
+    updateColor();
+}
+
+function reverseInterpolation(value){
+    if (document.getElementById("reverseInterpolation").checked){
+        reverseColorScale = true;
+    }
+    else if (!document.getElementById("reverseInterpolation").checked){
+        reverseColorScale = false;
+    }
+
     updateColor();
 }
 
@@ -914,7 +1148,9 @@ function sumColors(){
     if (document.getElementById("sumColors").checked){
 
         document.getElementById("useInterpolate").checked = false;
+        document.getElementById("reverseInterpolation").checked = false;
         sumChecked = true;
+        interpolate = false;
     }
     else{
         sumChecked = false;

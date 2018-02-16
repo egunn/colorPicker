@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4e0ac03f-9e5c-4c89-95e7-520c3335c1f9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/sketch.css" afterPath="$PROJECT_DIR$/css/sketch.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/sketch1.js" afterPath="$PROJECT_DIR$/js/sketch1.js" />
     </list>
     <ignored path="colorPicker.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,7 +32,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sketch1.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="sketch1.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/sketch1.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="160">
@@ -57,11 +54,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sketch.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="sketch.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/css/sketch.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="47" column="13" lean-forward="false" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
+            <state relative-caret-position="146">
+              <caret line="79" column="20" lean-forward="false" selection-start-line="79" selection-start-column="20" selection-end-line="79" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -106,9 +103,9 @@
       <list>
         <option value="$PROJECT_DIR$/js/backup.js" />
         <option value="$PROJECT_DIR$/lib/nearestColor.js" />
-        <option value="$PROJECT_DIR$/css/sketch.css" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/sketch1.js" />
+        <option value="$PROJECT_DIR$/css/sketch.css" />
       </list>
     </option>
   </component>
@@ -286,12 +283,12 @@
       <workItem from="1476468359260" duration="620000" />
       <workItem from="1476631616002" duration="5772000" />
       <workItem from="1515106461165" duration="63679000" />
-      <workItem from="1518651658332" duration="15998000" />
+      <workItem from="1518651658332" duration="16312000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="88074000" />
+    <option name="totallyTimeSpent" value="88388000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -490,11 +487,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/sketch.css">
+    <entry file="file://$PROJECT_DIR$/js/sketch1.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="47" column="13" lean-forward="false" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="160">
+          <caret line="494" column="20" lean-forward="true" selection-start-line="494" selection-start-column="20" selection-end-line="494" selection-end-column="20" />
+          <folding>
+            <element signature="e#1825#5422#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -506,13 +505,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/sketch1.js">
+    <entry file="file://$PROJECT_DIR$/css/sketch.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="494" column="20" lean-forward="true" selection-start-line="494" selection-start-column="20" selection-end-line="494" selection-end-column="20" />
-          <folding>
-            <element signature="e#1825#5422#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="146">
+          <caret line="79" column="20" lean-forward="false" selection-start-line="79" selection-start-column="20" selection-end-line="79" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>

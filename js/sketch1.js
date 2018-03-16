@@ -1182,6 +1182,7 @@ function readdPrevious(){
 
 function updateWeight(value){
     weight = value;
+    document.getElementById('opacityReporter1').innerHTML = Math.floor(value*100) + '% opacity (original palette color)';
     updateColor();
 }
 
@@ -1256,7 +1257,7 @@ function copy(o) {
 
 function updateAddWeight(value){
     addWeight = value;
-    document.getElementById('opacityReporter').innerHTML = Math.floor(value*100) + '% opacity (original palette color)';
+    document.getElementById('opacityReporter2').innerHTML = Math.floor(value*100) + '% opacity (original palette color)';
     generateTempPalette();
 }
 

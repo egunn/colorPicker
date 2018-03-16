@@ -81,6 +81,8 @@ h5 {
     /*float:right;*/
 }
 
+
+
 .rangespan {
     color:darkgray;
 }
@@ -100,7 +102,12 @@ h5 {
 }
 
 #buttonDiv{
-    float:right;
+    /*float:right;*/
+    margin-left: 150px;
+}
+
+#replacePalette{
+    float:left;
 }
 
 #weightSliderDiv{
